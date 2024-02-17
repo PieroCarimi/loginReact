@@ -15,13 +15,13 @@ const App = () => {
   });
 
   useEffect(() => {
-    // Aggiorna lo stato dopo che il localStorage è stato letto
+    
     setEmail(getEmailLogged());
     setUsers((prevUsers) => {
       const storedUsers = localStorage.getItem('users');
       return storedUsers ? JSON.parse(storedUsers) : prevUsers;
     });
-  }, []);  // Dipendenza vuota per eseguire solo all'inizio
+  }, []);  
 
   const getUserLogged = () => {
     const emailLogged = getEmailLogged();
@@ -68,23 +68,6 @@ const App = () => {
       return updatedUsers;
     });
   };
-  /* const updateUser = () => {
-    const prevUsers = JSON.parse(localStorage.getItem("users")) || [];
-    const emailLogged = getEmailLogged();
-    const user = getUserLogged();
-    let lastDataLogin = user.actualAccess;
-    const newUsers = prevUsers.map((user) => {
-        if (user.email === emailLogged) {
-            return {
-                ...user,
-                actualAccess: new Date().toLocaleString(),
-                lastAccess: lastDataLogin,
-                counter: user.counter + 1,
-            };
-        } else return { ...user };
-    });
-    localStorage.setItem("users", JSON.stringify(newUsers));
-}; */
 
   const saveNewUser = () => {
     const emailLogged = getEmailLogged();
